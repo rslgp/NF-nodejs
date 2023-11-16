@@ -1,76 +1,20 @@
-{
-  codigo: '1.02',
-  idIntegracao: 'A001XT',
-  discriminacao: 'Descrição dos serviços prestados, utilize | para quebra de linha na impressão.',
-  codigoTributacao: '4115200',
-  cnae: '4751201',
-  codigoCidadeIncidencia: '4115200',
-  descricaoCidadeIncidencia: 'MARINGA',
-  unidade: 'UN',
-  quantidade: 1,
-  iss: {
-    tipoTributacao: 0,
-    exigibilidade: 1,
-    retido: false,
-    aliquota: 3,
-    valor: 0,
-    valorRetido: 0,
-    processoSuspensao: '70049875465'
-  },
-  obra: { art: '6270201', codigo: '21' },
-  valor: {
-    servico: 0.1,
-    baseCalculo: 0.1,
-    deducoes: 0,
-    descontoCondicionado: 0,
-    descontoIncondicionado: 0,
-    liquido: 0.1,
-    unitario: 0.1,
-    valorAproximadoTributos: 0
-  },
-  deducao: { tipo: 0, descricao: 'Sem Deduções' },
-  retencao: {
-    pis: { aliquota: 0, valor: 0 },
-    cofins: { aliquota: 0, valor: 0 },
-    csll: { aliquota: 0, valor: 0 },
-    inss: { aliquota: 0, valor: 0 },
-    irrf: { aliquota: 0, valor: 0 },
-    outrasRetencoes: 0,
-    cpp: { aliquota: 0, valor: 0 }
-  },
-  tributavel: true,
-  ibpt: { simplificado: { aliquota: 0 }, detalhado: { aliquota: [Object] } },
-  responsavelRetencao: '1'
-}
-{
-  method: 'POST',
-  body: '{"codigo":"1.02","idIntegracao":"A001XT","discriminacao":"Descrição dos serviços prestados, utilize | para quebra de linha na impressão.","codigoTributacao":"4115200","cnae":"4751201","codigoCidadeIncidencia":"4115200","descricaoCidadeIncidencia":"MARINGA","unidade":"UN","quantidade":1,"iss":{"tipoTributacao":0,"exigibilidade":1,"retido":false,"aliquota":3,"valor":0,"valorRetido":0,"processoSuspensao":"70049875465"},"obra":{"art":"6270201","codigo":"21"},"valor":{"servico":0.1,"baseCalculo":0.1,"deducoes":0,"descontoCondicionado":0,"descontoIncondicionado":0,"liquido":0.1,"unitario":0.1,"valorAproximadoTributos":0},"deducao":{"tipo":0,"descricao":"Sem Deduções"},"retencao":{"pis":{"aliquota":0,"valor":0},"cofins":{"aliquota":0,"valor":0},"csll":{"aliquota":0,"valor":0},"inss":{"aliquota":0,"valor":0},"irrf":{"aliquota":0,"valor":0},"outrasRetencoes":0,"cpp":{"aliquota":0,"valor":0}},"tributavel":true,"ibpt":{"simplificado":{"aliquota":0},"detalhado":{"aliquota":{"municipal":0,"estadual":0,"federal":0}}},"responsavelRetencao":"1"}'
-}
-{
-  method: 'POST',
-  headers: _HeadersList {
-    cookies: null,
-    [Symbol(headers map)]: Map(2) { 'content-type' => [Object], 'x-api-key' => [Object] },
-    [Symbol(headers map sorted)]: null
-  },
-  body: '{"codigo":"1.02","idIntegracao":"A001XT","discriminacao":"Descrição dos serviços prestados, utilize | para quebra de linha na impressão.","codigoTributacao":"4115200","cnae":"4751201","codigoCidadeIncidencia":"4115200","descricaoCidadeIncidencia":"MARINGA","unidade":"UN","quantidade":1,"iss":{"tipoTributacao":0,"exigibilidade":1,"retido":false,"aliquota":3,"valor":0,"valorRetido":0,"processoSuspensao":"70049875465"},"obra":{"art":"6270201","codigo":"21"},"valor":{"servico":0.1,"baseCalculo":0.1,"deducoes":0,"descontoCondicionado":0,"descontoIncondicionado":0,"liquido":0.1,"unitario":0.1,"valorAproximadoTributos":0},"deducao":{"tipo":0,"descricao":"Sem Deduções"},"retencao":{"pis":{"aliquota":0,"valor":0},"cofins":{"aliquota":0,"valor":0},"csll":{"aliquota":0,"valor":0},"inss":{"aliquota":0,"valor":0},"irrf":{"aliquota":0,"valor":0},"outrasRetencoes":0,"cpp":{"aliquota":0,"valor":0}},"tributavel":true,"ibpt":{"simplificado":{"aliquota":0},"detalhado":{"aliquota":{"municipal":0,"estadual":0,"federal":0}}},"responsavelRetencao":"1"}',
-  redirect: 'follow'
-}
-{
-  method: 'POST',
-  body: '{"cpfCnpj":"08187168000161","inscricaoMunicipal":"8214100099","inscricaoEstadual":"1234567850","inscricaoSuframa":"1234567850","indicadorInscricaoEstadual":9,"razaoSocial":"Tomador de teste LTDA 2","nomeFantasia":"Tomador de teste","endereco":{"tipoLogradouro":"Avenida","logradouro":"Duque de Caxias","numero":"882","complemento":"17 andar","tipoBairro":"Zona","bairro":"Zona 01","codigoPais":"1058","descricaoPais":"Brasil","codigoCidade":"4115200","descricaoCidade":"Maringá","estado":"PR","cep":"87020025"},"telefone":{"ddd":"44","numero":"30379500"},"email":"tomador@plugnotas.com.br","orgaoPublico":true}'
-}
-{
-  method: 'POST',
-  headers: _HeadersList {
-    cookies: null,
-    [Symbol(headers map)]: Map(2) { 'content-type' => [Object], 'x-api-key' => [Object] },
-    [Symbol(headers map sorted)]: null
-  },
-  body: '{"cpfCnpj":"08187168000161","inscricaoMunicipal":"8214100099","inscricaoEstadual":"1234567850","inscricaoSuframa":"1234567850","indicadorInscricaoEstadual":9,"razaoSocial":"Tomador de teste LTDA 2","nomeFantasia":"Tomador de teste","endereco":{"tipoLogradouro":"Avenida","logradouro":"Duque de Caxias","numero":"882","complemento":"17 andar","tipoBairro":"Zona","bairro":"Zona 01","codigoPais":"1058","descricaoPais":"Brasil","codigoCidade":"4115200","descricaoCidade":"Maringá","estado":"PR","cep":"87020025"},"telefone":{"ddd":"44","numero":"30379500"},"email":"tomador@plugnotas.com.br","orgaoPublico":true}',
-  redirect: 'follow'
-}
-{"iss":{"tipoTributacao":0,"exigibilidade":1,"retido":false,"aliquota":3,"valor":0,"valorRetido":0,"processoSuspensao":"70049875465"},"obra":{"art":"6270201","codigo":"21"},"valor":{"servico":0.1,"baseCalculo":0.1,"deducoes":0,"descontoCondicionado":0,"descontoIncondicionado":0,"liquido":0.1,"unitario":0.1,"valorAproximadoTributos":0},"deducao":{"tipo":0,"descricao":"Sem Deduções"},"retencao":{"pis":{"aliquota":0,"valor":0},"cofins":{"aliquota":0,"valor":0},"csll":{"aliquota":0,"valor":0},"inss":{"aliquota":0,"valor":0},"irrf":{"aliquota":0,"valor":0},"cpp":{"aliquota":0,"valor":0}},"ibpt":{"simplificado":{"aliquota":0},"detalhado":{"aliquota":{"municipal":0,"estadual":0,"federal":0}}},"tributosFederaisRetidos":true,"codigo":"1.02","idIntegracao":"A001XT","discriminacao":"Descrição dos serviços prestados, utilize | para quebra de linha na impressão.","codigoTributacao":"4115200","cnae":"4751201","codigoCidadeIncidencia":"4115200","descricaoCidadeIncidencia":"MARINGA","unidade":"UN","quantidade":1,"tributavel":true,"responsavelRetencao":"1","id":"6553bc519d4dd57477aaf707"}
-{"cpfCnpj":"08187168000160","razaoSocial":"TECNOSPEED S/A","endereco":{"codigoPais":"1058","descricaoPais":"Brasil","cep":"87020025","tipoLogradouro":"Rua","logradouro":"Avenida Duque de Caxias","codigoCidade":"4115200","estado":"DF","numero":"de 953/954 ao fim","bairro":"Zona 07"},"__v":0}
-{"message":"Cadastro efetuado com sucesso","data":{"id":"6553cf0550cbde3edf018679"}}
-{"message":"Cadastro efetuado com sucesso","data":{"cnpj":"08187168000161"}}
+Server is running on port 3000
+{}
+{"error":{"message":"O corpo da requisição deve ser um array de documentos","data":{}}}
+{}
+{"error":{"message":"O corpo da requisição deve ser um array de documentos","data":{}}}
+[
+  {
+    idIntegracao: 'XXXYY999',
+    prestador: { cpfCnpj: '08187168000160' },
+    tomador: {
+      cpfCnpj: '99999999999999',
+      razaoSocial: 'Empresa de Teste LTDA',
+      inscricaoMunicipal: '8214100099',
+      email: 'teste@plugnotas.com.br',
+      endereco: [Object]
+    },
+    servico: [ [Object] ]
+  }
+]
+{"error":{"message":"Já existe uma NFSe com os parâmetros informados","data":{"new":{"idIntegracao":"XXXYY999","cnpj":"08187168000160"},"current":{"id":"5eef8cbc1666445f0598c958","idIntegracao":"XXXYY999","emissao":"21/06/2020","tipoAutorizacao":"WEBSERVICE","situacao":"CANCELADO","prestador":"08187168000160","tomador":"99999999999999","valorServico":1,"numeroNfse":"1555","serie":"LAL","lote":290008,"numero":7,"codigoVerificacao":"5278FE6A7","autorizacao":"21/06/2020","mensagem":"Cancelamento de NFS-e Homologado","pdf":"https://api.sandbox.plugnotas.com.br/nfse/pdf/5eef8cbc1666445f0598c958","xml":"https://api.sandbox.plugnotas.com.br/nfse/xml/5eef8cbc1666445f0598c958","cancelamento":"20/07/2020"}}}}
