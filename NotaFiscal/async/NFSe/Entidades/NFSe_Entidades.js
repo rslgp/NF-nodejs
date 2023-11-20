@@ -1,4 +1,4 @@
-let util = require("../../global/util")
+let util = require("../../../global/util")
 
 //entidade servico ou tomador
 module.exports = class NFSe_Entidades{
@@ -14,7 +14,7 @@ module.exports = class NFSe_Entidades{
 
         let requestOptions = util.Default_Req_Options(requestOptionsArgs);
 
-        util.global.do_fetch(api_endpoint_path, requestOptions);
+        return fetch(api_endpoint_path, requestOptions);
     }
 
     consultaNFSe_Entidade(entidade, args){
@@ -26,7 +26,7 @@ module.exports = class NFSe_Entidades{
     
         let requestOptions = util.Default_Req_Options(requestOptionsArgs);
              
-        util.global.do_fetch(api_endpoint_path, requestOptions);
+        return fetch(api_endpoint_path, requestOptions);
     }
 
     updateEntidade(entidade, args){
@@ -41,6 +41,6 @@ module.exports = class NFSe_Entidades{
 
         let requestOptions = util.Default_Req_Options(requestOptionsArgs);
 
-        util.global.do_fetch(api_endpoint_path, requestOptions);
+        return fetch(api_endpoint_path, requestOptions);
     }
 }

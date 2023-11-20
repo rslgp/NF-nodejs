@@ -1,17 +1,28 @@
-const NFSe = require("./NotaFiscal/NFSe/NFSe");
+//const NFSe = require("./NotaFiscal/cb/NFSe/NFSe");
 
-const NFSe_Entidades = require("./NotaFiscal/NFSe/Entidades/NFSe_Entidades");
+//const NFSe_Entidades = require("./NotaFiscal/cb/NFSe/Entidades/NFSe_Entidades");
 
-/*
-let nfse_instance = new NFSe();
-nfse_instance.registrarNFSe();
-nfse_instance.consultarNFSe("5eef8cbc1666445f0598c958");
-nfse_instance.cancelarNFSe("5eef8cbc1666445f0598c958");
-nfse_instance.download_NFSe("5eef8cbc1666445f0598c958", "pdf");
-nfse_instance.download_NFSe("5eef8cbc1666445f0598c958", "xml");
-nfse_instance.consultarDadosNFSe("5eef8cbc1666445f0598c958");
-nfse_instance.consultarDadosNFSe_CNPJ("XXXYY999", "08187168000160");
-*/
+const NFSe = require("./NotaFiscal/async/NFSe/NFSe");
+
+//const NFSe_Entidades = require("./NotaFiscal/async/NFSe/Entidades/NFSe_Entidades");
+
+async function test(){
+    
+    let nfse_instance = new NFSe();
+    let v1 = await nfse_instance.registrarNFSe();
+    console.log(v1);
+    v1.text().then((value)=> console.log("TESTE"+value));
+    console.log("JSON");
+    console.log(v1.json());
+    let v2 = await nfse_instance.consultarNFSe("5eef8cbc1666445f0598c958");
+    let v3 = await nfse_instance.cancelarNFSe("5eef8cbc1666445f0598c958");
+    let v4 = await nfse_instance.download_NFSe("5eef8cbc1666445f0598c958", "pdf");
+    let v5 = await nfse_instance.download_NFSe("5eef8cbc1666445f0598c958", "xml");
+    let v7 = await nfse_instance.consultarDadosNFSe("5eef8cbc1666445f0598c958");
+    let v8 = await nfse_instance.consultarDadosNFSe_CNPJ("XXXYY999", "08187168000160");
+}
+test();
+
 
 /*
 let nfse_entidades_instance = new NFSe_Entidades();
@@ -23,7 +34,7 @@ nfse_entidades_instance.cadastrarEntidade("servico", {"payloadJSON": mock.MOCK_p
 nfse_entidades_instance.cadastrarEntidade("tomador", {"payloadJSON": mock.MOCK_payload_tomador} ); //cnpj
 */
 
-const NFe = require("./NotaFiscal/NFe/NFe");
+const NFe = require("./NotaFiscal/cb/NFe/NFe");
 let nfe_instance = new NFe();
 nfe_instance.registrarNFe();
 nfe_instance.cancelarNFe("5f738609fd55b378b8ea7e47");

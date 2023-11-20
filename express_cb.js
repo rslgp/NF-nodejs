@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
-const NFSe = require("./NotaFiscal/async/NFSe/NFSe");
+const NFSe = require("./NotaFiscal/cb/NFSe/NFSe");
 let nfse_instance = new NFSe();
 const mock = require("./NotaFiscal/global/MOCK");
 
@@ -150,115 +150,103 @@ servico_discriminacao
 iss aliquota
 cnae
 */ 
-async function get_RequestPayload_NF_array(payload, args_conta_receber){
-    let sql_query_result = await pool.query(
+function clientFillDataPayloadJSON(payload, args_conta_receber, cb){
+    console.log(2);
+    console.log("PAYLOAD")
+    console.log(payload)
+    console.log("ARGS CONTA RECEBER")
+    console.log(args_conta_receber)
+    //pegar dados do cliente para preencher nf
+    //console.log(args_conta_receber.cliente_id);
+    pool.query(
         `SELECT * FROM adm.cliente WHERE id=$1`,
-        [args_conta_receber.cliente_id]);
+        [args_conta_receber.cliente_id],
+        async (error, results) => {
+            if (error) {
+                console.log(4)
+                console.error('Error executing query', error);
+            } else {
+                console.log(4)
+                //console.log(results)
+                if(!payload.iss){ //DEFAULT VALUE ALIQUOTA SE NAO INFORMAR NO PAYLOAD
+                    payload.iss = {
+                        "aliquota": 2
+                    }
+                }
+                for(let c of results.rows){
+                    let args_nf = {
+                        "cliente" : c,
 
-        console.log(4);
-        if(!payload.iss){ //DEFAULT VALUE ALIQUOTA SE NAO INFORMAR NO PAYLOAD
-            payload.iss = {
-                "aliquota": 2
+                        //REQUIRED
+                        "cnpj": payload.cnpj || "04544707000110", //usar cnpj snet by default
+                        "servico_cod_item_lista_servico": payload.servico_cod_item_lista_servico,
+                        "servico_discriminacao": payload.servico_discriminacao,
+                        
+                        "valor": {
+                            //REQUIRED
+                            "servico": args_conta_receber.valor_recebido,
+
+                            //OPCIONAL
+                            "descontoCondicionado": args_conta_receber.desconto_taxa || 0
+                        },
+                        "iss": {
+                            //REQUIRED
+                            "aliquota": payload.iss.aliquota
+                        },
+
+                        //OPCIONAL
+                        "cnae": payload.cnae
+                    }
+                    console.log("----")
+                    let r = await createJSONpayload(args_nf)
+                    console.log(r)
+                    cb( [r] );
+                }
             }
-        }
-
-        let result_cliente = sql_query_result.rows[0];
-        let args_nf = {
-            "cliente" : result_cliente,
-
-            //REQUIRED
-            "cnpj": payload.cnpj || "04544707000110", //usar cnpj snet by default
-            "servico_cod_item_lista_servico": payload.servico_cod_item_lista_servico,
-            "servico_discriminacao": payload.servico_discriminacao,
             
-            "valor": {
-                //REQUIRED
-                "servico": args_conta_receber.valor_recebido,
-
-                //OPCIONAL
-                "descontoCondicionado": args_conta_receber.desconto_taxa || 0
-            },
-            "iss": {
-                //REQUIRED
-                "aliquota": payload.iss.aliquota
-            },
-
-            //OPCIONAL
-            "cnae": payload.cnae
+            //pool.end();
         }
-        console.log("----")
-        let payloadNF_request = await createJSONpayload(args_nf)
-        return [payloadNF_request];
-        
-    
+    );
     console.log("EXIT");
 }
 
-/**
- * Precisa ter uma foreignkey apontando para contas_a_receber;
-- Precisa ter um campo de status; 
-- Precisa ter um campo de referência para o provedor da nota fiscal (id_integracao);
-- Precisa ter os campos que armazenem a url  do S3 do xml e do pdf da nota fiscal;
- *
- */
-async function action_inserir_propriodb_notafiscal(args){
-    console.log("INSERIR")
-    let result_sqlInsert = await pool.query(
-        `INSERT INTO adm.nota_fiscal 
-        (conta_receber_id, status, id_integracao, id_nf, xml_url, pdf_url, protocolo_registro_plugnotas) 
-        VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-        [args.conta_receber_id, args.status, args.id_integracao, args.id_nf, args.xml_url, args.pdf_url, args.protocolo_registro_plugnotas]
-    );
-    console.log(result_sqlInsert)
-    console.log("INSERIR EXIT")
-}
+function action_run_conta_receber(contas_receber_id, payload){
 
-async function get_plugnf_data(idNF){
-    let dados_nf = await nfse_instance.consultarDadosNFSe(idNF);
-    return (await dados_nf.json())[0];
-    
-}
-
-async function registrar_plugnotas(nf_payloadNFArray){
-    let nf_plugNF_completedResponse = await nfse_instance.registrarNFSe(nf_payloadNFArray);
-    
-    return await nf_plugNF_completedResponse.json();
-}
-
-async function action_run_conta_receber(contas_receber_id, payload){
-    
-    let results = await pool.query(
+    pool.query(
         `SELECT * FROM adm.conta_receber WHERE id=$1`,
-        [contas_receber_id]
-    );
+        [contas_receber_id],
+        (error, results) => {
+            if (error) {
+                console.error('Error executing query', error);
+            } else {
+                let nf_payloadArray = [];
+                //console.log(results);
+                //for(let conta_receber_row of results){
+                //    let nf = clientFillDataPayloadJSON(payload, conta_receber_row.cliente_id);
+                //    nf_payloadArray.push(nf);
+                //}
+                const elem_conta_receber = results.rows[0];
 
-    const elem_conta_receber = results.rows[0];
+                //restringir field especificas
+                //const args_conta_receber = {
+                //    "cliente_id": elem_conta_receber.cliente_id,
+                //    "valor_recebido": elem_conta_receber.valor_recebido
+                //}
 
-    let nf_payloadNFArray = await get_RequestPayload_NF_array(payload, elem_conta_receber);
+                let cb_whenJSONcompleted = (nf_payloadArray) => {
 
-    //criar nota_fiscal do provedor plug_notas
-    let plug_nf_data = await registrar_plugnotas(nf_payloadNFArray)
-    console.log("PLUG NOTAS")
-    for(let nf_criada of plug_nf_data.documents){
-        let dados_nf = await get_plugnf_data(nf_criada.id)
-        console.log(dados_nf)
-        let args_db_proprio = {
-            "conta_receber_id": contas_receber_id,
-            "id_integracao": nf_criada.idIntegracao,
-            "id_nf": nf_criada.id,
-            "protocolo_registro_plugnotas": plug_nf_data.protocol,
-            "status": dados_nf.situacao,
-            "xml_url":dados_nf.xml,
-            "pdf_url":dados_nf.pdf,
+                    let cb_whenPlugNFcompleted = (response) => {
+                        response.text().then((value)=> console.log(value));
+                    };
+                    console.log(nf_payloadArray);
+                    nfse_instance.registrarNFSe(nf_payloadArray, cb_whenPlugNFcompleted);
+                }
+
+                clientFillDataPayloadJSON(payload, elem_conta_receber, cb_whenJSONcompleted);
+            }
+            //pool.end();
         }
-        console.log(args_db_proprio)
-        action_inserir_propriodb_notafiscal(args_db_proprio)
-
-    }
-    //pool.end();
-                
-
-            
+    );
 }
 
 const mock_contas_receber = {

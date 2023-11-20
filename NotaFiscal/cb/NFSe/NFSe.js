@@ -1,6 +1,6 @@
-const util = require("../global/util");
+const util = require("../../global/util");
 
-const mock = require("../global/MOCK");
+const mock = require("../../global/MOCK");
 
 const nf = require("../default/NF")
 const default_nf = new nf();
@@ -24,7 +24,7 @@ module.exports = class NFSe {
         //const cb = (r) => {
         //    r.text().then((value)=> console.log(value));
         //}
-        util.global.do_fetch(api_endpoint_path, requestOptions, cb);
+        util.global.do_fetch_cb(api_endpoint_path, requestOptions, cb);
     }
 
     cancelarNFSe(id_NFSe, cod_cancelamento_cidade="C099", cb){

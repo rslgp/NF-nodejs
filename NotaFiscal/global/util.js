@@ -9,7 +9,7 @@ const global = {
         response.text().then((value)=> console.log(value));
     },
     
-    do_fetch : (url, req_options, callback=global.log_cb, args_cb) => {    
+    do_fetch_cb : (url, req_options, callback=global.log_cb, args_cb) => {    
         fetch(url, req_options)
         .then(response => {
             callback(response, args_cb);        

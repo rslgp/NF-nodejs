@@ -1,6 +1,6 @@
-const util = require("../global/util");
+const util = require("../../global/util");
 
-const mock = require("../global/MOCK");
+const mock = require("../../global/MOCK");
 
 const nf = require("../default/NF")
 const default_nf = new nf();
