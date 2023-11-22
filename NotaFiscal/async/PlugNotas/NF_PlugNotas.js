@@ -1,9 +1,20 @@
-const util = require("../global/util");
+const util = require("../../global/util");
 
-const mock = require("../global/MOCK");
+const mock = require("../../global/MOCK");
+const NFSeStrategy = require("../default/NFSeStrategy");
 
-module.exports = class NF {
-    registrarNF(api_endpoint_path, cb, payloadDataMultiplasNotasJSONArray= mock.MOCK_payloadDataMultiplasNFeJSONArray){
+let instance = null;
+
+module.exports = class NF_PlugNotas extends NFSeStrategy {
+    constructor(){
+        super();
+        if(!instance){
+            instance = this;
+        }
+        return instance;
+    }
+    
+    registrarNF(api_endpoint_path, payloadDataMultiplasNotasJSONArray= mock.MOCK_payloadDataMultiplasNFeJSONArray){
         let payload = JSON.stringify( payloadDataMultiplasNotasJSONArray );
     
         let requestOptionsArgs = {
@@ -13,7 +24,7 @@ module.exports = class NF {
 
         let requestOptions = util.Default_Req_Options(requestOptionsArgs);
 
-        util.global.do_fetch(api_endpoint_path, requestOptions, cb);
+        return fetch(api_endpoint_path, requestOptions);
     }
 
     //retorna rps (NAO TEM)
@@ -29,16 +40,11 @@ module.exports = class NF {
         //const cb = (r) => {
         //    r.text().then((value)=> console.log(value));
         //}
-        util.global.do_fetch(api_endpoint_path, requestOptions, cb);
+        return fetch(api_endpoint_path, requestOptions);
     }
     */
 
-    cancelarNF(api_endpoint_path, cb, cod_cancelamento_cidade="C099"){        
-        var payload = JSON.stringify({
-            "codigo": cod_cancelamento_cidade,
-            "message": "É necessário o body ao cancelar uma NFe, para incluir o código de cancelamento da cidade."
-          });
-
+    cancelarNF(api_endpoint_path, payload){
         let requestOptionsArgs = {
             method: 'POST',
             body: payload,
@@ -46,38 +52,38 @@ module.exports = class NF {
 
         let requestOptions = util.Default_Req_Options(requestOptionsArgs);
 
-        util.global.do_fetch(api_endpoint_path, requestOptions, cb);
+        return fetch(api_endpoint_path, requestOptions);
     }
 
     //ext - extensao do arquivo
-    download_NF(api_endpoint_path, cb){    
+    download_NF(api_endpoint_path){    
         let requestOptionsArgs = {
             method: 'GET',
         };
 
         let requestOptions = util.Default_Req_Options(requestOptionsArgs);
         
-        util.global.do_fetch(api_endpoint_path, requestOptions, cb);
+        return fetch(api_endpoint_path, requestOptions);
     }
     
-    consultarDadosNF(api_endpoint_path, cb){    
+    consultarDadosNF(api_endpoint_path){    
         let requestOptionsArgs = {
             method: 'GET',
         };
 
         let requestOptions = util.Default_Req_Options(requestOptionsArgs);
 
-        util.global.do_fetch(api_endpoint_path, requestOptions, cb);
+        return fetch(api_endpoint_path, requestOptions);
     }
 
     //retorna o mesmo da consultarDadosNFe porem usa cnpj no input
-    consultarDadosNF_CNPJ(api_endpoint_path, cb){
+    consultarDadosNF_CNPJ(api_endpoint_path){
         let requestOptionsArgs = {
             method: 'GET',
         };
 
         let requestOptions = util.Default_Req_Options(requestOptionsArgs);
 
-        util.global.do_fetch(api_endpoint_path, requestOptions, cb);
+        return fetch(api_endpoint_path, requestOptions);
     }
 }

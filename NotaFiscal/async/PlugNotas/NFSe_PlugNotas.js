@@ -2,10 +2,10 @@ const util = require("../../global/util");
 
 const mock = require("../../global/MOCK");
 
-const nf = require("../default/NF")
+const nf = require("./NF_PlugNotas")
 const default_nf = new nf();
 
-module.exports = class NFSe {
+module.exports = class NFSe_PlugNotas {
     async registrarNFSe(payloadDataMultiplasNotasJSONArray= mock.MOCK_payloadDataMultiplasNFSeJSONArray){
         let api_endpoint_path = util.BASE_URL + "/nfse";
         return default_nf.registrarNF(api_endpoint_path, payloadDataMultiplasNotasJSONArray);
@@ -20,32 +20,24 @@ module.exports = class NFSe {
         };
 
         let requestOptions = util.Default_Req_Options(requestOptionsArgs);
-               
-        //const cb = (r) => {
-        //    r.text().then((value)=> console.log(value));
-        //}
+
         return fetch(api_endpoint_path, requestOptions);
     }
 
-    async cancelarNFSe(id_NFSe, cod_cancelamento_cidade="C099"){
+    async cancelarNFSe(id_NFSe, args){
         let api_endpoint_path = util.BASE_URL + "/nfse/cancelar/" + id_NFSe;
-        
-        return default_nf.cancelarNF(api_endpoint_path, cod_cancelamento_cidade);
+
+        var payload = JSON.stringify({
+            "codigo": args.cod_cancelamento_cidade || "C099",
+            "message": "É necessário o body ao cancelar uma NFe, para incluir o código de cancelamento da cidade."
+        });
+
+        return default_nf.cancelarNF(api_endpoint_path, payload);
     }
 
     //ext - extensao do arquivo
     async download_NFSe(id_NFSe, ext){
         let api_endpoint_path = util.BASE_URL + `/nfse/${ext}/${id_NFSe}`;
-           
-        /*let default_cb = (response) => {
-            if (response.ok) {
-                util.writeFile(response, id_NFSe, ext);
-            } else {
-              console.error('Failed to download '+ext, response.status, response.statusText);
-            }
-        };
-        const cb = (local_cb) ? local_cb : default_cb;
-        */
 
         return default_nf.download_NF(api_endpoint_path);
     }
