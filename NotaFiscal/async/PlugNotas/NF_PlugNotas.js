@@ -44,7 +44,7 @@ module.exports = class NF_PlugNotas extends NFSeStrategy {
     }
     */
 
-    cancelarNF(api_endpoint_path, payload){
+    async cancelarNF(api_endpoint_path, payload){
         let requestOptionsArgs = {
             method: 'POST',
             body: payload,
@@ -52,7 +52,18 @@ module.exports = class NF_PlugNotas extends NFSeStrategy {
 
         let requestOptions = util.Default_Req_Options(requestOptionsArgs);
 
-        return fetch(api_endpoint_path, requestOptions);
+        fetch(api_endpoint_path, requestOptions); //bug plugnotas para cancelar tem que pedir duas vezes
+        /*
+            "message": "Nfse validation failed: retorno.dataCancelamento: Cast to date failed for value \"2023-11-23 15:11:84\" at path \"retorno.dataCancelamento\""
+        */
+        const maxTries = 10;
+        let response, trial=1;
+        do {
+            response = await fetch(api_endpoint_path, requestOptions);
+            trial++;
+        } while (response.status === 400 && trial < maxTries);
+
+        return response;
     }
 
     //ext - extensao do arquivo

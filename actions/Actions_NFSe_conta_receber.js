@@ -11,13 +11,15 @@ const pool = new Pool({
     port: process.env.PG_PORT,
 });
 
-const NFSe = require("../../NotaFiscal/async/PlugNotas/NFSe_PlugNotas");
-let nfse_instance = new NFSe();
-const mock = require("../../NotaFiscal/global/MOCK");
+//const NFSe = require("../NotaFiscal/async/PlugNotas/NFSe_PlugNotas");
+//let nfse_instance = new NFSe();
+let nfse_instance = null;
+
+const mock = require("../NotaFiscal/global/MOCK");
 
 const { v4: uuidv4 } = require('uuid');
 
-const municipios = require('../../municipios.json');
+const municipios = require('../municipios.json');
 
 const codigo_ibge_municipio = {};
 municipios.forEach((municipio) => {
@@ -95,11 +97,13 @@ function getTipoLogradouro(logradouro){
     
 }
 
-
+function copyJSON(originalObject){
+    return JSON.parse(JSON.stringify(originalObject));
+}
 
 async function createJSONpayload(args){
     console.log(3);
-    let payload = mock.MOCK_payloadDataMultiplasNFSeJSONArray[0];
+    let payload = copyJSON(mock.MOCK_payloadDataMultiplasNFSeJSONArray[0]);
     payload.idIntegracao = uuidv4();
     payload.prestador.cpfCnpj = args.cnpj; //"04544707000110"
     payload.tomador.cpfCnpj = args.cliente.cpf_cnpj;
@@ -197,18 +201,18 @@ async function get_RequestPayload_NF_array(payload, args_conta_receber){
  *
  */
 async function action_inserir_propriodb_notafiscal(args){
-    //console.log("INSERIR")
-    //let result_sqlInsert = await pool.query(
-    //    `INSERT INTO adm.nota_fiscal 
-    //    (conta_receber_id, status, id_integracao, id_nf, xml_url, pdf_url, protocolo_registro_plugnotas) 
-    //    VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-    //    [args.conta_receber_id, args.status, args.id_integracao, args.id_nf, args.xml_url, args.pdf_url, args.protocolo_registro_plugnotas]
-    //);
-    //console.log(result_sqlInsert)
-    //console.log("INSERIR EXIT")
+    console.log("INSERIR")
+    let result_sqlInsert = await pool.query(
+        `INSERT INTO adm.nota_fiscal 
+        (conta_receber_id, status, id_integracao, id_nf, xml_url, pdf_url, protocolo_registro_plugnotas) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+        [args.conta_receber_id, args.status, args.id_integracao, args.id_nf, args.xml_url, args.pdf_url, args.protocolo_registro_plugnotas]
+    );
+    console.log(result_sqlInsert)
+    console.log("INSERIR EXIT")
 }
 
-async function get_plugnf_data(idNF){
+async function consultarDados_plugnotas(idNF){
     let dados_nf = await nfse_instance.consultarDadosNFSe(idNF);
     return (await dados_nf.json())[0];
     
@@ -220,7 +224,8 @@ async function registrar_plugnotas(nf_payloadNFArray){
     return await nf_plugNF_completedResponse.json();
 }
 
-module.exports = async function action_run_conta_receber(contas_receber_id, payload){
+module.exports = async function action_run_conta_receber(contas_receber_id, payload, provider){
+    nfse_instance = provider;
     
     let results = await pool.query(
         `SELECT * FROM adm.conta_receber WHERE id=$1`,
@@ -235,7 +240,7 @@ module.exports = async function action_run_conta_receber(contas_receber_id, payl
     let plug_nf_data = await registrar_plugnotas(nf_payloadNFArray)
     console.log("PLUG NOTAS")
     for(let nf_criada of plug_nf_data.documents){
-        let dados_nf = await get_plugnf_data(nf_criada.id)
+        let dados_nf = await consultarDados_plugnotas(nf_criada.id)
         console.log(dados_nf)
         let args_db_proprio = {
             "conta_receber_id": contas_receber_id,
