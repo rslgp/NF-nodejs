@@ -25,6 +25,16 @@ router.post('/contas_receber/:id/criar_nf', async (req, res) => {
     res.send('Received the payload');
 });
 
+router.post('/contas_receber/:vencimento_ano/:vencimento_mes/criar_nf/vencimento', async (req, res) => {
+    const contas_receber_vencimento = {"ano":req.params.vencimento_ano, "mes":req.params.vencimento_mes};
+    const payload = req.body;
+    //console.log(contas_receber_id);
+    actions_nfse_instance.action_run_conta_receber_vencimento(contas_receber_vencimento, payload);
+    // Handle the payload here
+    console.log(payload);
+    res.send('Received the payload');
+});
+
 /**
  * @swagger
  * /nfse/criar:
@@ -78,7 +88,8 @@ router.post('/contas_receber/:id/criar_nf', async (req, res) => {
  *               idNotaFiscal: "12345"
 
  */
-router.post('/nfse/criar', async (req, res) => {
+//criar
+router.post('/nfse/', async (req, res) => {
     const payload = req.body;
     for(let i=0; i<payload.length; i++){
         payload[i].idIntegracao = uuidv4();
@@ -90,25 +101,6 @@ router.post('/nfse/criar', async (req, res) => {
     //res.send('Received the payload');
 });
 
-/**
- * @swagger
- * /nfse/cancelar/{id}:
- *   get:
- *     summary: Cancelar nota fiscal por id da nota fiscal
- *     description:  |
- *      Cancela uma nota fiscal, tentando 10 vezes em caso de erro 400
- *       200:
- *         description: Emite mensagem de nota cancelada
- */
-router.post('/nfse/cancelar/:id', async (req, res) => {
-    const id_NFSe = req.params.id;
-    const payload = req.body;
-    let action_retorno = await actions_nfse_instance.action_run_nfse_cancelar(id_NFSe, payload);
-    let resposta = await action_retorno.json();
-    console.log(resposta);
-    res.send(resposta);
-    //res.send('Received the payload');
-});
 
 /**
  * @swagger
@@ -120,10 +112,44 @@ router.post('/nfse/cancelar/:id', async (req, res) => {
  *       200:
  *         description: JSON com dados da nota fiscal
  */
-router.get('/nfse/consultar/:id', async (req, res) => {
+//consultar
+router.get('/nfse/:id', async (req, res) => {
     const id_NFSe = req.params.id;
     let action_retorno = await actions_nfse_instance.action_run_nfse_consultar(id_NFSe);
     let resposta = await action_retorno.json();
+    console.log(resposta);
+    res.send(resposta);
+    //res.send('Received the payload');
+});
+
+/**
+ * @swagger
+ * /nfse/cancelar/{id}:
+ *   delete:
+ *     summary: Cancelar nota fiscal por id da nota fiscal
+ *     description:  |
+ *      Cancela uma nota fiscal, tentando 10 vezes em caso de erro 400
+ *       200:
+ *         description: Emite mensagem de nota cancelada
+ */
+//cancelar
+router.delete('/nfse/:id', async (req, res) => {
+    const id_NFSe = req.params.id;
+    const payload = req.body;
+    let action_retorno = await actions_nfse_instance.action_run_nfse_cancelar(id_NFSe, payload);
+    let resposta = await action_retorno.json();
+    console.log(resposta);
+    res.send(resposta);
+    //res.send('Received the payload');
+});
+
+//download file
+router.get('/nfse/:id/:ext', async (req, res) => {
+    const id_NFSe = req.params.id;
+    const extensao = req.params.ext;
+    let action_retorno = await actions_nfse_instance.action_run_nfse_download(id_NFSe, extensao);
+    console.log(action_retorno)
+    let resposta = await action_retorno.text();
     console.log(resposta);
     res.send(resposta);
     //res.send('Received the payload');

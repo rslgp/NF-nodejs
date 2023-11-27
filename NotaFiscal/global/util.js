@@ -1,6 +1,6 @@
 const config = require("./config");
 const BASE_URL = config.BASE_URL;
-const API_KEY = config.API_KEY;
+var API_KEY = config.API_KEY;
 
 const fs = require("fs");
 

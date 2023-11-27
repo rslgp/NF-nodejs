@@ -220,11 +220,10 @@ async function consultarDados_plugnotas(idNF){
 
 async function registrar_plugnotas(nf_payloadNFArray){
     let nf_plugNF_completedResponse = await nfse_instance.registrarNFSe(nf_payloadNFArray);
-    
     return await nf_plugNF_completedResponse.json();
 }
 
-module.exports = async function action_run_conta_receber(contas_receber_id, payload, provider){
+async function action_run_conta_receber(contas_receber_id, payload, provider){
     nfse_instance = provider;
     
     let results = await pool.query(
@@ -233,15 +232,19 @@ module.exports = async function action_run_conta_receber(contas_receber_id, payl
     );
 
     const elem_conta_receber = results.rows[0];
+    //console.log(elem_conta_receber);
+    
+    //default value
+    payload.servico_cod_item_lista_servico = payload.servico_cod_item_lista_servico || "1.07";
+    payload.servico_discriminacao = payload.servico_discriminacao || "Sistema de gestão de software e suporte técnico para clínicas e consultórios";
 
     let nf_payloadNFArray = await get_RequestPayload_NF_array(payload, elem_conta_receber);
-
     //criar nota_fiscal do provedor plug_notas
+    //erro id undefined ou body unusable, usar o payload {servico_cod_item_lista_servico servico_discriminacao}
     let plug_nf_data = await registrar_plugnotas(nf_payloadNFArray)
-    console.log("PLUG NOTAS")
     for(let nf_criada of plug_nf_data.documents){
         let dados_nf = await consultarDados_plugnotas(nf_criada.id)
-        console.log(dados_nf)
+        //console.log(dados_nf)
         let args_db_proprio = {
             "conta_receber_id": contas_receber_id,
             "id_integracao": nf_criada.idIntegracao,
@@ -251,12 +254,52 @@ module.exports = async function action_run_conta_receber(contas_receber_id, payl
             "xml_url":dados_nf.xml,
             "pdf_url":dados_nf.pdf,
         }
-        console.log(args_db_proprio)
+        //console.log(args_db_proprio)
         action_inserir_propriodb_notafiscal(args_db_proprio)
 
     }
-    //pool.end();
-                
+    //pool.end();            
+}
 
-            
+
+async function action_run_conta_receber_vencimento(vencimento, payload, provider){
+    nfse_instance = provider;
+    
+    let results = await pool.query(
+        `SELECT * FROM adm.conta_receber WHERE EXTRACT(YEAR FROM vencimento) = $1 AND EXTRACT(MONTH FROM vencimento) = $2`,
+        [vencimento.ano, vencimento.mes]
+    );
+
+    for( let elem_conta_receber of results.rows){   
+        //default value
+        payload.servico_cod_item_lista_servico = payload.servico_cod_item_lista_servico || "1.07";
+        payload.servico_discriminacao = payload.servico_discriminacao || "Sistema de gestão de software e suporte técnico para clínicas e consultórios";
+
+        let nf_payloadNFArray = await get_RequestPayload_NF_array(payload, elem_conta_receber);
+        //criar nota_fiscal do provedor plug_notas
+        //erro id undefined ou body unusable, usar o payload {servico_cod_item_lista_servico servico_discriminacao}
+        let plug_nf_data = await registrar_plugnotas(nf_payloadNFArray)
+        for(let nf_criada of plug_nf_data.documents){
+            let dados_nf = await consultarDados_plugnotas(nf_criada.id)
+            //console.log(dados_nf)
+            let args_db_proprio = {
+                "conta_receber_id": elem_conta_receber.id,
+                "id_integracao": nf_criada.idIntegracao,
+                "id_nf": nf_criada.id,
+                "protocolo_registro_plugnotas": plug_nf_data.protocol,
+                "status": dados_nf.situacao,
+                "xml_url":dados_nf.xml,
+                "pdf_url":dados_nf.pdf,
+            }
+            //console.log(args_db_proprio)
+            action_inserir_propriodb_notafiscal(args_db_proprio)
+
+        }
+    }
+    //pool.end();            
+}
+
+module.exports = {
+    action_run_conta_receber,
+    action_run_conta_receber_vencimento
 }

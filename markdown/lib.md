@@ -3,8 +3,10 @@
 Este é um pacote Node.js que faz requisições REST relacionados a Nota Fiscal, emitir, consultar, cancelar, e usar conta_receber para gerar NF.
 
 ## Uso
+você pode checar as chamadas de api nessa collection do postman
+https://api.postman.com/collections/31158160-dfe2279a-4c76-4551-a7a8-26e51a2b2389?access_key=PMAT-01HG13VN67MDHFGQHZTK019DNR
 
-Para usar a escrita dos logs, siga estas etapas:
+Para usar o uso de nota fiscal, siga estas etapas:
 
 1. Instancie a inicialização do com default ou passando um provedor
 
@@ -91,7 +93,15 @@ const actions_nfse_instance = new Actions_NFSe(); //para usar provedor default
 ```javascript
 //action_run_conta_receber(contas_receber_id, payload)
 //contas_receber_id é o index do banco de dados
-//mesmo payload de action_run_nfse_avulsa
+{
+    "servico_cod_item_lista_servico": 1.07,
+    "servico_discriminacao":"teste"
+}
+
+```
+```javascript
+//action_run_nfse_download
+//id da nota fiscal
 
 ```
 
