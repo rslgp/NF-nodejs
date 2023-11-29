@@ -19,7 +19,7 @@ module.exports = class Actions_NFSe {
         return await this.nfse_instance.registrarNFSe(payload);
     }
 
-    async action_run_nfse_cancelar(id_NFSe,payload){
+    async action_run_nfse_cancelar(id_NFSe, payload){
         return await this.nfse_instance.cancelarNFSe(id_NFSe, payload);
     }
 
@@ -37,5 +37,9 @@ module.exports = class Actions_NFSe {
 
     action_run_conta_receber_vencimento(vencimento,payload){
         action_run_conta_receber_vencimento_provider(vencimento, payload, this.nfse_instance);
+    }
+
+    async action_run_plugnotas_certificado(payload){
+        return await this.nfse_instance.cadastrarCertificado(payload);
     }
 }

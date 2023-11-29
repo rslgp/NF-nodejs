@@ -21,6 +21,9 @@ const { v4: uuidv4 } = require('uuid');
 
 const municipios = require('../municipios.json');
 
+const AWS_SERVICE = require('../NotaFiscal/global/aws');
+const aws = new AWS_SERVICE();
+
 const codigo_ibge_municipio = {};
 municipios.forEach((municipio) => {
     codigo_ibge_municipio[municipio.nome] = municipio.codigo_ibge;
@@ -204,9 +207,9 @@ async function action_inserir_propriodb_notafiscal(args){
     console.log("INSERIR")
     let result_sqlInsert = await pool.query(
         `INSERT INTO adm.nota_fiscal 
-        (conta_receber_id, status, id_integracao, id_nf, xml_url, pdf_url, protocolo_registro_plugnotas) 
+        (conta_receber_id, status, id_integracao, id_nf, xml_url, pdf_url) 
         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-        [args.conta_receber_id, args.status, args.id_integracao, args.id_nf, args.xml_url, args.pdf_url, args.protocolo_registro_plugnotas]
+        [args.conta_receber_id, args.status, args.id_integracao, args.id_nf, args.xml_url, args.pdf_url]
     );
     console.log(result_sqlInsert)
     console.log("INSERIR EXIT")
@@ -223,6 +226,40 @@ async function registrar_plugnotas(nf_payloadNFArray){
     return await nf_plugNF_completedResponse.json();
 }
 
+async function padrao_conta_receber(tabela_conta_receber, payload){
+    for( let elem_conta_receber of tabela_conta_receber.rows){   
+        //default value
+        payload.servico_cod_item_lista_servico = payload.servico_cod_item_lista_servico || "1.07";
+        payload.servico_discriminacao = payload.servico_discriminacao || "Sistema de gestão de software e suporte técnico para clínicas e consultórios";
+
+        let nf_payloadNFArray = await get_RequestPayload_NF_array(payload, elem_conta_receber);
+        //criar nota_fiscal do provedor plug_notas
+        //erro id undefined ou body unusable, usar o payload {servico_cod_item_lista_servico servico_discriminacao}
+        let plug_nf_data = await registrar_plugnotas(nf_payloadNFArray)
+        for(let nf_criada of plug_nf_data.documents){
+            let dados_nf = await consultarDados_plugnotas(nf_criada.id) //TODO MUDAR PARA WEBHOOK
+            //console.log(dados_nf)
+            let args_db_proprio = {
+                "conta_receber_id": elem_conta_receber.id,
+                "id_integracao": nf_criada.idIntegracao,
+                "id_nf": nf_criada.id,
+                //"protocolo_registro_plugnotas": plug_nf_data.protocol,
+                "status": dados_nf.situacao,
+                "xml_url":dados_nf.xml,
+                "pdf_url":dados_nf.pdf,
+            }
+            //action_inserir_propriodb_notafiscal(args_db_proprio)
+
+            let args_aws = {
+                "cnpj": dados_nf.prestador,
+                "dest_cnpj": dados_nf.tomador,
+                ...args_db_proprio
+            }
+            //aws.saveFilesS3(args_aws);
+
+        }
+    }
+}
 async function action_run_conta_receber(contas_receber_id, payload, provider){
     nfse_instance = provider;
     
@@ -231,33 +268,7 @@ async function action_run_conta_receber(contas_receber_id, payload, provider){
         [contas_receber_id]
     );
 
-    const elem_conta_receber = results.rows[0];
-    //console.log(elem_conta_receber);
-    
-    //default value
-    payload.servico_cod_item_lista_servico = payload.servico_cod_item_lista_servico || "1.07";
-    payload.servico_discriminacao = payload.servico_discriminacao || "Sistema de gestão de software e suporte técnico para clínicas e consultórios";
-
-    let nf_payloadNFArray = await get_RequestPayload_NF_array(payload, elem_conta_receber);
-    //criar nota_fiscal do provedor plug_notas
-    //erro id undefined ou body unusable, usar o payload {servico_cod_item_lista_servico servico_discriminacao}
-    let plug_nf_data = await registrar_plugnotas(nf_payloadNFArray)
-    for(let nf_criada of plug_nf_data.documents){
-        let dados_nf = await consultarDados_plugnotas(nf_criada.id)
-        //console.log(dados_nf)
-        let args_db_proprio = {
-            "conta_receber_id": contas_receber_id,
-            "id_integracao": nf_criada.idIntegracao,
-            "id_nf": nf_criada.id,
-            "protocolo_registro_plugnotas": plug_nf_data.protocol,
-            "status": dados_nf.situacao,
-            "xml_url":dados_nf.xml,
-            "pdf_url":dados_nf.pdf,
-        }
-        //console.log(args_db_proprio)
-        action_inserir_propriodb_notafiscal(args_db_proprio)
-
-    }
+    padrao_conta_receber(results, payload);
     //pool.end();            
 }
 
@@ -269,33 +280,8 @@ async function action_run_conta_receber_vencimento(vencimento, payload, provider
         `SELECT * FROM adm.conta_receber WHERE EXTRACT(YEAR FROM vencimento) = $1 AND EXTRACT(MONTH FROM vencimento) = $2`,
         [vencimento.ano, vencimento.mes]
     );
-
-    for( let elem_conta_receber of results.rows){   
-        //default value
-        payload.servico_cod_item_lista_servico = payload.servico_cod_item_lista_servico || "1.07";
-        payload.servico_discriminacao = payload.servico_discriminacao || "Sistema de gestão de software e suporte técnico para clínicas e consultórios";
-
-        let nf_payloadNFArray = await get_RequestPayload_NF_array(payload, elem_conta_receber);
-        //criar nota_fiscal do provedor plug_notas
-        //erro id undefined ou body unusable, usar o payload {servico_cod_item_lista_servico servico_discriminacao}
-        let plug_nf_data = await registrar_plugnotas(nf_payloadNFArray)
-        for(let nf_criada of plug_nf_data.documents){
-            let dados_nf = await consultarDados_plugnotas(nf_criada.id)
-            //console.log(dados_nf)
-            let args_db_proprio = {
-                "conta_receber_id": elem_conta_receber.id,
-                "id_integracao": nf_criada.idIntegracao,
-                "id_nf": nf_criada.id,
-                "protocolo_registro_plugnotas": plug_nf_data.protocol,
-                "status": dados_nf.situacao,
-                "xml_url":dados_nf.xml,
-                "pdf_url":dados_nf.pdf,
-            }
-            //console.log(args_db_proprio)
-            action_inserir_propriodb_notafiscal(args_db_proprio)
-
-        }
-    }
+    
+    padrao_conta_receber(results, payload);
     //pool.end();            
 }
 

@@ -1,37 +1,22 @@
-/home/medical/Desktop/projects/NF-nodejs-main/node_modules/pg-pool/index.js:45
-    Error.captureStackTrace(err);
-          ^
+/home/medical/Desktop/projects/NF-nodejs-main/node_modules/express/lib/router/index.js:469
+      throw new TypeError('Router.use() requires a middleware function but got a ' + gettype(fn))
+      ^
 
-error: function year(date) does not exist
-    at /home/medical/Desktop/projects/NF-nodejs-main/node_modules/pg-pool/index.js:45:11
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-    at async action_run_conta_receber_vencimento (/home/medical/Desktop/projects/NF-nodejs-main/actions/Actions_NFSe_conta_receber.js:268:19) {
-  length: 203,
-  severity: 'ERROR',
-  code: '42883',
-  detail: undefined,
-  hint: 'No function matches the given name and argument types. You might need to add explicit type casts.',
-  position: '39',
-  internalPosition: undefined,
-  internalQuery: undefined,
-  where: undefined,
-  schema: undefined,
-  table: undefined,
-  column: undefined,
-  dataType: undefined,
-  constraint: undefined,
-  file: 'parse_func.c',
-  line: '629',
-  routine: 'ParseFuncOrColumn'
-}
+TypeError: Router.use() requires a middleware function but got a Object
+    at Function.use (/home/medical/Desktop/projects/NF-nodejs-main/node_modules/express/lib/router/index.js:469:13)
+    at Function.<anonymous> (/home/medical/Desktop/projects/NF-nodejs-main/node_modules/express/lib/application.js:227:21)
+    at Array.forEach (<anonymous>)
+    at Function.use (/home/medical/Desktop/projects/NF-nodejs-main/node_modules/express/lib/application.js:224:7)
+    at Object.<anonymous> (/home/medical/Desktop/projects/NF-nodejs-main/express.js:16:5)
+    at Module._compile (node:internal/modules/cjs/loader:1241:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Module._load (node:internal/modules/cjs/loader:938:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:83:12)
 
 Node.js v20.9.0
-/home/medical/Desktop/projects/NF-nodejs-main/actions/Actions_NFSe_conta_receber.js:286
-                "conta_receber_id": contas_receber_id,
-                                    ^
+(node:72511) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
 
-ReferenceError: contas_receber_id is not defined
-    at action_run_conta_receber_vencimento (/home/medical/Desktop/projects/NF-nodejs-main/actions/Actions_NFSe_conta_receber.js:286:37)
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-
-Node.js v20.9.0
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)

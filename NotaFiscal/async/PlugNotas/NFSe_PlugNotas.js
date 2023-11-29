@@ -2,8 +2,12 @@ const util = require("../../global/util");
 
 const mock = require("../../global/MOCK");
 
+const fs = require('fs');
+const FormData = require('form-data');
+
 const nf = require("./NF_PlugNotas")
 const default_nf = new nf();
+
 
 module.exports = class NFSe_PlugNotas {
     async registrarNFSe(payloadDataMultiplasNotasJSONArray= mock.MOCK_payloadDataMultiplasNFSeJSONArray){
@@ -54,4 +58,36 @@ module.exports = class NFSe_PlugNotas {
     
         return default_nf.consultarDadosNF_CNPJ(api_endpoint_path);
     }
+    
+    //CERTIFICADO
+    async cadastrarCertificado(args){
+        let api_endpoint_path = util.BASE_URL + "/certificado";
+        console.log("ARQUIVO");
+        console.log(args.arquivo);
+
+        // Convert the file to a Blob
+        const arquivoBlob = new Blob([args.arquivo.buffer], { type: 'application/octet-stream' });
+        console.log(arquivoBlob);
+        // Create a FormData object to send the file as multipart/form-data
+        const formData = new FormData();
+        formData.append('arquivo', arquivoBlob, args.arquivo.originalname);
+
+        formData.append('senha', args.senha);
+
+        console.log("FORM");
+        console.log(formData);
+
+        let requestOptionsArgs = {
+            method: 'POST',
+            body: formData
+        };
+
+        let requestOptions = util.Default_Req_Options(requestOptionsArgs);
+
+        requestOptions.headers.delete("Content-Type");
+        requestOptions.headers.append("Content-Type", "multipart/form-data");
+        console.log(requestOptions.headers);
+        return fetch(api_endpoint_path, requestOptions);
+    }
+
 }
