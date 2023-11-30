@@ -3,7 +3,60 @@
 [33m[nodemon] watching path(s): *.*[39m
 [33m[nodemon] watching extensions: js,mjs,cjs,json[39m
 [32m[nodemon] starting `node express.js`[39m
-[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+Server is running on port 3000
+123mudar
+{"message":"Cadastro efetuado com sucesso","data":{"id":"6568e4242deb5c828dd6ebe7"}}
+{
+  certificado_id: '6568e4242deb5c828dd6ebe7',
+  arquivo: "0�\x11/\x02\x01\x030�\x10�\x06\t*�H��\r\x01\x07\x01��\x10�\x04�\x10�0�\x10�0�\x06�\x06\t*�H��\r\x01\x07\x06��\x06�0�\x06�\x02\x01\x000�\x06�\x06\t*�H��\r\x01\x07\x010W\x06\t*�H��\r\x01\x05\r0J0)\x06\t*�H��\r\x01\x05\f0\x1C\x04\b�΅ٙ9�e\x02\x02\b\x000\f\x06\b*�H��\r\x02\t\x05\x000\x1D\x06\t`�H\x01e\x03\x04\x01*\x04\x10|���\x9A�z$Q\b��&�쀂\x06@h1`J��\f\x1E�%<��~Ĝ�s�7\x7F�\rV\x1E(�@��6��Z\x1A\r��6���NV���\x1A\x1Dbܼ̉��34򢅸\x12�\x1B㓘�3�:uX\x14�\x02X�Sl���%��\x03����k�a�J��Ce�bw���Inȋ�7'j\x05G\f\r5/�@7����\x0E+\x1F��:��.h|:_:J?j��\x15��\x14�E$)�Qgs�o\x01$*m��k?��p�\x19\x03\x1De���a7��|�dٽ���8�S��`�6��ռ_��TU<���d\x02\x19��{W����Q�ØL�s����vٲ�\x18\x01��rwV�w&�W\x0F���2����~:[�-�t\x1EQ�\\�BJ����K\x14c8d�o\x12#(\x1E\x17�z�$<�s�1��4_SJ��[\x11ޟ��YT2O��S�\x03��4C��/���fc����RT�?w\x04�e~j{�v^łL�\\3�\\�\x11�0�\x1DP�\x0BuNG\x18|�AI^�\x04\x1A��������\r�⦨\x1D�t5\x1F��^p��->Le���afg\x1D\x03a;D�񇢚z�#\x1Dڡ�>��~~ag��\f��;�\x17�a�*��\x15�а�,\x7Fxg� �\x13���x*\x07�u5���\t�A͆n|�rk�\x11�]��\x17�G���kyy�\x07�\x00�b\x11��/��̈́>nů.I�Q�\x11Xbl\x7F���O\x7F\x10=?eh�X��e�]Tw\x0E���\x1A�o��Gh�ɣp�R\x0E�r)\fz��\x1CB8�~�ٌM\t��t�E�\x02o��\x04RB�f)\x13\x12=�D�'���t��\x0F'㵴��p\x1DXo\t'&%2�g8��\t%�\x10+'�DCZ݈RAiB�;�'?&܈�?����e��k!\x18��+���\x19�%6pa%��O�\x14�ƾ�Gh�L>���L�.�$V\x10���\x04�^���.\n" +
+    `\x14�\x1C���\x0F\x0B�*"iJ�Ķ�it�E��p\x06c���KQ�'\n` +
+    'r_l�G[�U��A���<��_8�b�;\x04�UO$�\x14T�1\x1A\x0B��&L�D~�!t%�(����8䫣\x1B%��m ��$ކ�3ZX^�e��u\x12b\x0B��Y\t��\x1C�\x17*X��E\x04\x0B\x17\x0F��m\x14\x1A�\x13e��&�C��6�\x0E��\x03X�U&Pu���~\x0Be�\x1C�PR��V�`H�� �ʔ\x03A\x03\bF����\x03����}��\x11�\t�\x15�̽�A��ط��\f�{Z�F�\x11>C�\tg\r�`j\x024\'����@�\x1D\r���(��1ݻ�m�7��yh���g�\x00v�-f +\x1D�Kw^7¿�D��\x17\\�+�����\x1B\x10�i\x12C\x04�\x13n\x0F�;�\x03,Ł�A\x13"ך���"\x16P(.��\x02d��EUu�VX#��Ec�=�\x1D\x16J�_��)�a��R/\x0E�e��t#��.\b�������I�\x01���D�\x10ߛ\f���w��09\x18\x1C;��\x02\x12\x04���|3v��w�xFث�P�Ա�s��/\x00���m�t��;ב\x14�y#�`�0��\x0E�\b�x���z�b\n' +
+    '�մ4e��F�s\x12yV\b뽂>)���H�Snأ���.�\x17��U\x1BC\x10sFh0a�cK9�0�؄\x1De\x05o\n' +
+    '�\x13�\x15\x0Fފh�)\x1Ey\x0B�/�y�p\x00��\x0B\x05�x�"T5\n' +
+    '���\n' +
+    '\x1E�+�\'��)ɑU����k�h�&�B�RO[��\\O\x14)\'�H��NJ�[\x1AT[ ""�����\x0E�8��q\x0E�_ȑs��ǹ���K|n�_���VD1\x14Ǭ$UIlǕe�B�h_�V��W̯\x0Feg&V7�\x03a\x02�Dt�z\x18�\x1CEuP`��%ݣ#\x1E�f��n���m\x1DT�WI���)���%\\��\x0E-hN\x1Ey-�9�����o4\x1A�J�7T�\t����\x11�\t�FG�[�Q]l�L��ǠU\tzI~_\x03�=f���￳\x19cKy\x01v�pV\\\x14\x1E$+FB�-�Ă�,Σ\x14�;&���_]\x0B�i?��&��9o\bR�,9��(\x10&�.J\x17�l��A~�M\x1C \x1F���\x0E7�Q"�0�\n' +
+    '\x04\x06\t*�H��\r\x01\x07\x01��\t�\x04�\t�0�\t�0�\t�\x06\x0B*�H��\r\x01\f\n' +
+    '\x01\x02��\t�0�\t�0W\x06\t*�H��\r\x01\x05\r0J0)\x06\t*�H��\r\x01\x05\f0\x1C\x04\b��F�8��w\x02\x02\b\x000\f\x06\b*�H��\r\x02\t\x05\x000\x1D\x06\t`�H\x01e\x03\x04\x01*\x04\x10���K-�rw�\x10�̧�6Z\x04�\tP���#Z\x13-�EÛ*�2�k��\x17��\x02�!\x10���8��\x03O\x12�\x16BK���~.g���\x03\x0B�\x15\x0F�.b|h�*�Vu�-�q����\x1D~l\x01H\x0F�D�@��\'�ƭר�THCu\x1D�L�t�\\�;�z�\x19�3��;��4]\t?]\x1Bg��;^S�I�w�t�M\b�v�����Nog>�?׸C��=\x0Fi�ؔ\x15&\x01�\b`vۺ����r\rq�K�RCs�ϧm�/S�p\x1C�k\x06Dw>px��j�%|��m˦�)��!"\x1C;|�p�WðI�r���:��!{�W(m������F-�4č�\x05~W�\x1Ceu�B#���hQ��2�tǊ:�{�ȿpL��P��,�^x���\x10��\x1EQ��ks7����\'xD\f�pc�hf\x12�&��\'�\x06���\x10��J�~\t��f�\b�_��D����61��f7�KJ5ܭ"}��|�c�\x04z�)�\x19Iyl���MPa�j@����\x1DnY\tl��&�\x17k�\x1A�\x19BSkܬk�[�a�l��\t�\f�װ�F�T����d{d4�}^V��6$-Nm����3>�����Bq\b�\x04���Hk��\x18�\x0F�����{���<AJb�R��\x0EγL!�w�\x1DP���\x01���e�:S:҉f+Q�,�\b\x05�:RG\x07 �\x12��#�\x17����=�_���Q\x01�\x1C�E�<��\\Gcyj�+��Ir-�^�`#4(\x175�Ҡ��^a\b�\x1925t�j��5�?\x16�9\x16\t���\tb��\x1D\x14wؼ�I��zA�w<`�󨠉t��aT)��\x0F�\x7FγՁȬ��\x7F\x1D�,]uD�Y�\x0F1z\x15.v��@\x03e6T��hz=\x18�]W�W\x10]y��Cg����-���<$t�G~�)�x\x1E !\x02���]�v�팷\x124v��uT�\x19�=�^^�i�4��2�%ƈb�&��\x1C[\x1A�8[6��N�n�s�\x1EL4���+n�\x7F\x06]�`��N��6Q�?\x0E�\x02�\x1D ����lK=���xB�N��=6\x05n4��$C":�� w��ʑ�+��"����Y��vo5�J�O^ml\x14`�TF� k����\x136v�K��\x17a�\x19���Vo�\x1Bk���7�h�x="\f\x16i�\x7Fo�\x18��>a�\x04(j����i\x11v�Z�\tJ���\x15o\x11����o�\x0B����\x1A�\x04.���V��q���;�|�]\x0F.Q\x13�w��k�l~]��h^8G\x00\x87����\x06}br�\t�,C�\x11�-Di1hN�h���EX���%�\x12��YsBY��w��zا&\x12�)�\x15\x07�\x00[�7P�=�W�㉧eL��O��^ye���YC��\x0BS��Q���\x1E�HU"\x0E�i�rL��\x10���\x16\x15C\x0Fɭ��\r2]ʭq\x0B\x16&�ڥ\n' +
+    "��NKg�y�]����\x12_'����\x18|Q\x100\x7FZ��\x11<(1߾�\x1A˰.��Zt)މDF� ��2\x0F\x1Dـj?��j]�yF> ��&����\n" +
+    '�y\x04\x11��j��]ϋ?\'�a��F��,?�krܢ���aB��LU�7Oy?���9�e�jYD���W]g�B�\x02�Ұ\x1C��Ǟ}R\x00;�?�\b��<�-�9����Q��ٙlFotI �b�>\x1A\x1AsO\x06\x1A\f���C1�\rj�J��-\x00z� 96q�L)���]Ľ�)u�7�K\x06�k�ۘ\x06p�u*��7��dG���z�$)˒#7�(���x�C&�Q����)\x16\x0E���F�\x19�A�Dމ\x03��d`���Uj7��e��\x01w}�q��y`22�I�\x1Em&?�P��cF����o�.$�#�DY�О�\x1DL�#���G�\x0Bz�Sl�!`��G\x04_�\x01�;9F\b8I\x15���R�\x1CS\x04ޝ#:�\x00S�j�����}��\x06�f��e\x1EO\x16)-\'S\x1F猙=r��ܑ��|ʢ�Y�(�2f��g\x1E�_C�#�5\x0F�\x16(�\\��6\x17+"a��Q�sh�� ;��7M�~\x1D\x18\n' +
+    '\x0F�D�\x00o]H��.\x07�.�v��\x00 �\x05��-5�����7j?��b�̫�E��3\x19=,�u��P\x1A��a�\x14\x16\x1B\x07����6-�\x1At>\x05o�D��[�ʴ��?�\x0FN\x151��\f.Y7|�\x03�y�\x13P��F�(\x12�;��,ފ���G����[���\x1A\x15�\n' +
+    '���������L� ⲹ�����Ϛ{�\x01�\x01��鄓\x10\x7F�ٳ��V~�~\x19�R���I\x00��������x� �@�G�\x0F���L��Ȃ��s�m\x13D�Ri��M�p�-�\x00X��V�x}���=��h|�\n' +
+    "\x1Ab~\x175sQ�\x1Ftuv���K\x1C���J%:�k{c��Q�Ql(���=U���Ez�\x1B_�\x05�\r�\x7F�N�\x0FM+�W�\x139n\x18��8;j�;\x0BK`X��@�y\x0B�\x17�#dJ�\x1D���Q8]���PL����\\�\x7F/�u̒�s\x15���r�;\x05<d)6.F�}O�\x12Q���I\x10\x16z0�<BضƧ9��{�,�\fK◸|�/\x06�X�\x172=�R3\x03�?I�\x17\x15�S�t�\x0EvnEN�Z_�\x01.UG�%\x7F\x1B�*/�5��l}��\x04v�\x05?u:'9e��݂N'�PΘ�H���?��n�S\x1BB\x04nFQ�Q�H֥�&��\fu\x111RJtWS.&�qÀ�\bi\x02�����\\nT��&8��ﶯ,��\x01\x13V�A���B�����t�F��7�T�GNi�\x11<�=*�)��7<UX�Q�\x1A[!E&HK�z�Y�y��E��\x03u� ����Mi\x07�zl� �\x16� Ձk�Q��S\x14O \x0B�Ȼ[T��UI�>���>3a���\\\x07pB�Z�97��ʌzs�h\x1E�<*6r\x07�Y�R(�f\x10�*���7|=fkU��*\x1D�����\x070�U'z���TФg�\x14�G��\x1E�\x06IW��h\t��Y��_���I��;f\x14�\x17�����1%0#\x06\t*�H��\r\x01\t\x151\x16\x04\x14/\n" +
+    "��W�l3;�\x1DB94�M�ʢ0A010\r\x06\t`�H\x01e\x03\x04\x02\x01\x05\x00\x04 ^�,\x1Eٔl'�:�s�\x1B��T\x14�Y���=u��U\x05�-\x04\b\\�/���G�\x02\x02\b\x00",
+  senha: '57a272adc43dc4c800f6078097535213',
+  cnpj: '06091668000178'
+}
+Result {
+  command: 'SELECT',
+  rowCount: 1,
+  oid: null,
+  rows: [ { empresa_id: 1 } ],
+  fields: [
+    Field {
+      name: 'empresa_id',
+      tableID: 21015,
+      columnID: 3,
+      dataTypeID: 23,
+      dataTypeSize: 4,
+      dataTypeModifier: -1,
+      format: 'text'
+    }
+  ],
+  _parsers: [ [Function: parseInteger] ],
+  _types: TypeOverrides {
+    _types: {
+      getTypeParser: [Function: getTypeParser],
+      setTypeParser: [Function: setTypeParser],
+      arrayParser: [Object],
+      builtins: [Object]
+    },
+    text: {},
+    binary: {}
+  },
+  RowCtor: null,
+  rowAsArray: false,
+  _prebuiltEmptyResultObject: { empresa_id: null }
+}
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node express.js`[39m
 [32m[nodemon] restarting due to changes...[39m
@@ -11,5 +64,103 @@
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node express.js`[39m
 Server is running on port 3000
-{"message":"Cadastro efetuado com sucesso","data":{"id":"65679aff7c904bfdf51cde2d"}}
-{"message":"Cadastro efetuado com sucesso","data":{"id":"65679b212deb5c33c5d6e28a"}}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
+123mudar
+{"message":"Cadastro efetuado com sucesso","data":{"id":"6568e6e57c904be3191ce772"}}
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
+123mudar
+{"message":"Cadastro efetuado com sucesso","data":{"id":"6568e7b22deb5cd010d6ec0e"}}
+06091668000178/certificado
+{
+  certificado_id: '6568e7b22deb5cd010d6ec0e',
+  arquivo: <Buffer 30 82 11 2f 02 01 03 30 82 10 e5 06 09 2a 86 48 86 f7 0d 01 07 01 a0 82 10 d6 04 82 10 d2 30 82 10 ce 30 82 06 c2 06 09 2a 86 48 86 f7 0d 01 07 06 a0 ... 4353 more bytes>,
+  senha: '57a272adc43dc4c800f6078097535213',
+  cnpj: '06091668000178',
+  arquivo_path: '06091668000178/certificado'
+}
+Result {
+  command: 'SELECT',
+  rowCount: 1,
+  oid: null,
+  rows: [ { empresa_id: 1 } ],
+  fields: [
+    Field {
+      name: 'empresa_id',
+      tableID: 21015,
+      columnID: 3,
+      dataTypeID: 23,
+      dataTypeSize: 4,
+      dataTypeModifier: -1,
+      format: 'text'
+    }
+  ],
+  _parsers: [ [Function: parseInteger] ],
+  _types: TypeOverrides {
+    _types: {
+      getTypeParser: [Function: getTypeParser],
+      setTypeParser: [Function: setTypeParser],
+      arrayParser: [Object],
+      builtins: [Object]
+    },
+    text: {},
+    binary: {}
+  },
+  RowCtor: null,
+  rowAsArray: false,
+  _prebuiltEmptyResultObject: { empresa_id: null }
+}
+06091668000178/certificado uploaded to S3: https://api-nf.s3.amazonaws.com/06091668000178/certificado
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node express.js`[39m
+Server is running on port 3000
