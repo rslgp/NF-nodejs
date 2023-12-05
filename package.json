@@ -1,21 +1,22 @@
 {
-  "dependencies": {
-    "aes-encryption": "^1.0.4",
-    "aws-sdk": "^2.1505.0",
-    "axios": "^1.6.2",
-    "body-parser": "^1.20.2",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "form-data": "^4.0.0",
-    "multer": "^1.4.5-lts.1",
-    "nodemon": "^3.0.1",
-    "pg": "^8.11.3",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0",
-    "uuid": "^9.0.1"
-  },
-  "scripts": {
-    "express": "nodemon express.js > output/out.txt 2>output/error.txt",
-    "test": "nodemon main.js > output/out.txt 2>output/error.txt"
-  }
+	"dependencies": {
+		"aes-encryption": "^1.0.4",
+		"aws-sdk": "^2.1505.0",
+		"axios": "^1.6.2",
+		"body-parser": "^1.20.2",
+		"dotenv": "^16.3.1",
+		"express": "^4.18.2",
+		"form-data": "^4.0.0",
+		"multer": "^1.4.5-lts.1",
+		"nodemon": "^3.0.1",
+		"pg": "^8.11.3",
+		"swagger-jsdoc": "^6.2.8",
+		"swagger-ui-express": "^5.0.0",
+		"uuid": "^9.0.1"
+	},
+	"scripts": {
+		"start": "node NotaFiscal_Lib/web/express.js",
+		"express": "nodemon NotaFiscal_Lib/web/express.js > output/out.txt 2>output/error.txt",
+		"test": "nodemon NotaFiscal_Lib/tests/tests.js > output/out.txt 2>output/error.txt"
+	}
 }
